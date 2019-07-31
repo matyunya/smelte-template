@@ -1,15 +1,27 @@
-const production = !process.env.ROLLUP_WATCH;
-const purgecss = require("@fullhuman/postcss-purgecss");
+const extractor = require("smelte/src/utils/css-extractor.js");
 
-module.exports = {
-  plugins: [
+module.exports = (purge = false) => {
+  return [
     require("postcss-import")(),
-    require("tailwindcss")("./node_modules/smelte/tailwind.config.js"),
-    require("autoprefixer"),
-    production &&
-      purgecss({
-        content: ["./**/*.html", "./**/*.svelte"],
-        defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+    require("postcss-url")(),
+    require("postcss-input-range")(),
+    require("autoprefixer")(),
+    require("tailwindcss")("./tailwind.config.js"),
+    purge &&
+      require("cssnano")({
+        preset: "default"
+      }),
+    purge &&
+      require("@fullhuman/postcss-purgecss")({
+        content: ["./**/*.svelte"],
+        extractors: [
+          {
+            extractor,
+            extensions: ["svelte"]
+          }
+        ],
+        whitelist: ["html", "body", "stroke-primary"],
+        whitelistPatterns: [/ripple/]
       })
-  ]
+  ].filter(Boolean);
 };

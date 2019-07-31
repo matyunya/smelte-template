@@ -33,6 +33,8 @@
     "start:dev": "sirv public --dev"
   },
   "dependencies": {
+    "postcss-input-range": "^4.0.0",
+    "postcss-url": "^8.0.0",
     "smelte": "^0.1.0",
     "tailwindcss-elevation": "^0.3.1"
   }
