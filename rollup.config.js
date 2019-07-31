@@ -28,6 +28,7 @@ export default {
       }
     }),
     postcss({
+      plugins: require("./postcss.config.js")(production),
       extract: 'public/utils.css'
     }),
 
