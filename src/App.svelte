@@ -1,7 +1,8 @@
 <script>
-  import { Button, Checkbox, Switch } from "smelte";
+  import { Button, Checkbox, Switch, Snackbar } from "smelte";
   export let name;
 
+  let showSnackbar = false;
 </script>
 
 <div class="container mx-auto h-full items-center">
@@ -17,4 +18,13 @@
   <div class="py-6">
     <Switch label="Switch" />
   </div>
+
+  <Button on:click={() => (showSnackbar = true)}>Show snackbar</Button>
+
+  <Snackbar bind:value={showSnackbar}>
+  <div>Have a nice day.</div>
+  <div slot="action">
+    <Button text on:click={() => (showSnackbar = false)}>Dismiss</Button>
+  </div>
+</Snackbar>
 </div>
