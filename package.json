@@ -35,7 +35,7 @@
   "dependencies": {
     "postcss-input-range": "^4.0.0",
     "postcss-url": "^8.0.0",
-    "smelte": "^0.1.12",
+    "smelte": "^0.2.4",
     "tailwindcss-elevation": "^0.3.1"
   }
 }
