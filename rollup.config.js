@@ -3,18 +3,10 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
-import postcss from "rollup-plugin-postcss";
-import getPreprocessor from "svelte-preprocess";
+
+const smelte = require("smelte/rollup-plugin-smelte");
 
 const production = !process.env.ROLLUP_WATCH;
-
-const preprocess = getPreprocessor({
-  transformers: {
-    postcss: {
-      plugins: require("./postcss.config.js")()
-    }
-  }
-});
 
 export default {
   input: "src/main.js",
@@ -26,16 +18,14 @@ export default {
   },
   plugins: [
     svelte({
-      preprocess,
       // enable run-time checks when not in production
       dev: !production,
       css: css => {
         css.write("public/components.css");
       }
     }),
-    postcss({
-      plugins: require("./postcss.config.js")(production),
-      extract: "public/utils.css"
+    smelte({
+      output: "public/global.css"
     }),
 
     // If you have external dependencies installed from
