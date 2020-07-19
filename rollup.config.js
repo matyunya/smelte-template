@@ -25,7 +25,7 @@ export default {
       }
     }),
     smelte({
-      output: "public/global.css"
+      output: "public/utils.css"
     }),
 
     // If you have external dependencies installed from
