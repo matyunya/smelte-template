@@ -13,5 +13,8 @@ Clone the project, install the dependencies and write some pretty code!
 npx degit matyunya/smelte-template my-svelte-project
 cd my-svelte-project
 yarn && yarn dev
-(or npm install && npm run dev)
+```
+or
+```
+npm install && npm run dev
 ```
